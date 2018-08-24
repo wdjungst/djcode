@@ -53,6 +53,7 @@ const ButtonLink = styled(Link)`
   text-align: center;
   box-shadow: 0px 0px 40px 2px #323232;
   min-width: 295px;
+  text-decoration: none;
   &:hover {
     color: white !important;
     box-shadow: none;
@@ -208,11 +209,17 @@ class Home extends Component {
     let index = words.findIndex( w => w === word)
     if (index >= 0) {
       if (index === words.length - 1) {
-        this.setState({ word: '', expandWords: true }, () => {
-          this.clearInt()
-        })
+        const mq = window.matchMedia( "(max-width: 630px)" );
+       if (mq.matches) {
+         this.setState({ word: words[0] })
+         return
+       } else {
+          this.setState({ word: '', expandWords: true }, () => {
+            this.clearInt()
+          })
 
-        return
+          return
+       }
        } else {
         index++
        }
