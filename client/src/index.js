@@ -5,7 +5,6 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import 'semantic-ui-css/semantic.min.css';
 import { initMiddleware } from 'devise-axios';
 import { injectGlobal, ThemeProvider } from 'styled-components';
 
@@ -15,6 +14,10 @@ const theme = {}
 
 injectGlobal`
   @import url(https://fonts.googleapis.com/css?family=Arizonia);
+  @import url(https://fonts.googleapis.com/css?family=Roboto);
+  * {
+    font-family: Roboto, sans-serif;
+  }
 
   .name-animate { 
     font-family: 'Arizonia', cursive !important;

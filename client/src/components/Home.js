@@ -15,17 +15,23 @@ const colorChange = keyframes`
 `
 
 const animateText = keyframes`
-  from {
+  0% {
     margin-bottom: 0px;
     margin-right: 0px;
     margin-top: 0px;
+    text-shadow: none;
+    display: none;
   }
 
-  to {
-    margin-bottom: 165px;
-    margin-right: 50px;
+  40% {
+    text-shadow: none;
+  }
+
+  100% {
+    margin-bottom: 100px;
+    margin-right: 70px;
     margin-top: -125px;
-    text-shadow: 43px 12px 12px lightgrey;
+    text-shadow: 40px 12px 12px lightgrey;
   }
 `
 
@@ -45,7 +51,7 @@ const ButtonLink = styled(Link)`
 
 const Icons = styled.div`
   position: absolute;
-  bottom: 30vh;
+  bottom: 25vh;
 `
 
 const BigLetter = styled.span`
@@ -83,6 +89,7 @@ const SpinBox = styled.div`
   font-size: 6rem;
   animation: ${colorChange} 4s linear infinite;
   animation-delay: 3.7s;
+  text-align: right;
 `
 
 const List = styled.div`
