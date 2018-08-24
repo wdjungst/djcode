@@ -248,7 +248,7 @@ class Home extends Component {
 
     const links = [
       { url: '/', text: '<Learn />' },
-      { url: '/', text: '<O.S.S. />' },
+      { url: '/', text: '<OSS />' },
       { url: '/', text: '<Speak />' },
       { url: '/', text: '<Built />' },
     ]
