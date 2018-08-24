@@ -1,16 +1,50 @@
 import React, { Component, Fragment } from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Divider } from 'semantic-ui-react'
+import { SocialIcon }  from 'react-social-icons'
 import { Flex } from './styles'
+import { Link } from 'react-router-dom';
 
 const colorChange = keyframes`
   from {
-    color: black;
+    color: #000; 
   }
 
   to {
-    color: lightblue; 
+    color: #ADD8E6;
   }
+`
+
+const animateText = keyframes`
+  from {
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+  }
+
+  to {
+    margin-bottom: 165px;
+    margin-right: 50px;
+    margin-top: -125px;
+    text-shadow: 43px 12px 12px lightgrey;
+  }
+`
+
+const ButtonLink = styled(Link)`
+  color: #ADD8E6;
+  padding: 30px 50px;
+  border: solid 6px #ADD8E6;
+  font-size: 3rem;
+  text-align: center;
+  box-shadow: 0px 0px 40px 2px #323232;
+  &:hover {
+    color: white !important;
+    box-shadow: none;
+  }
+`
+
+const Icons = styled.div`
+  position: absolute;
+  bottom: 30vh;
 `
 
 const BigLetter = styled.span`
@@ -28,6 +62,14 @@ const Container = styled.div`
   background-color: #000;
 `
 
+const Footer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 30vh;
+  background-color: #666666; 
+`
+
 const Canvas = styled.canvas`
   width: ${ props => props.expanded ? '250px' : '1px' };
   transition: width 1s linear;
@@ -37,13 +79,24 @@ const SpinBox = styled.div`
   width: 250px;
   font-size: 6rem;
   animation: ${colorChange} 4s linear infinite;
-  animation-delay: 3.8s;
+  animation-delay: 3.7s;
+`
+
+const List = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const Word = styled.div`
+  font-size: 5rem;
+  color: #ADD8E6;
+  animation: ${animateText} 2s linear;
+  animation-fill-mode: forwards;
 `
 
 class Name extends Component {
   componentDidMount() {
-    this.start()
-  }
+    this.start() }
 
   start = () => {
     const { fontText } = this.props
@@ -56,8 +109,8 @@ class Name extends Component {
     let i = 0
     ctx.font = "100px Arizonia";
     ctx.lineWidth = 1;
-	  ctx.lineJoin = "round";
-    ctx.globalAlpha = .7;
+    ctx.lineJoin = "round";
+    ctx.globalAlpha = .6;
     ctx.strokeStyle = ctx.fillStyle = "#FFF";
 
     (function loop() {
@@ -84,14 +137,17 @@ class Home extends Component {
   state = { 
     expanded: false,
     start: false,
-    words: [
-      'speak',
-      'write',
-      'teach',
-      'learn',
-    ],
-    word: ''
+    word: '',
+    expandWords: false,
   }
+
+  words = [
+    'speak',
+    'write',
+    'read',
+    'teach',
+    'learn',
+  ]
 
   componentDidMount() {
     setTimeout( () => this.setState({ expanded: true }), 1000 )
@@ -100,17 +156,26 @@ class Home extends Component {
   }
 
   componentWillUnmount() {
+    this.clearInt()
+  }
+
+  clearInt = () => {
     clearInterval(this.interval)
   }
 
   changeWord = () => {
-    const { words, word } = this.state
+    const { state: { word }, words } = this
     let index = words.findIndex( w => w === word)
     if (index >= 0) {
-      if (index === words.length - 1)
-        index = 0
-      else
+      if (index === words.length - 1) {
+        this.setState({ word: '', expandWords: true }, () => {
+          this.clearInt()
+        })
+
+        return
+       } else {
         index++
+       }
     } else {
      index = 0 
     }
@@ -118,30 +183,65 @@ class Home extends Component {
     this.setState({ word: words[index] })
   }
 
+  expand = () => {
+    return (
+      <List>
+        { this.words.map( word => <Word>{word}</Word> ) }
+      </List>
+    )
+  }
+
   render() {
-    const { expanded, start, word } = this.state
+    const { expanded, start, word, expandWords } = this.state
+    const urls = [
+      'https://github.com/wdjungst',
+      'https://twitter.com/djungst',
+      'https://www.linkedin.com/in/davejungst/'
+    ]
+
+    const links = [
+      { url: '/', text: '<Learn />' },
+      { url: '/', text: '<O.S.S. />' },
+      { url: '/', text: '<Speak />' },
+    ]
 
     return (
-      <Container>
-        <Flex height="50%" justifyContent="center" alignItems="center" >
-          <BigLetter className="name-animate">D</BigLetter>
-          <Canvas className="name-animate" expanded={expanded} id="avid" height="150"></Canvas>
-          <BigLetter className="name-animate">J</BigLetter>
-          <Canvas className="name-animate" expanded={expanded} id="ungst" height="150"></Canvas>
-          { start && 
-            <Fragment>
-              <Name fontText="avid" />
-              <Name fontText="ungst" />
-            </Fragment>
-          }
-        </Flex>
-        <CodeSection>
-          <Flex justifyContent="center">
-            <SpinBox>{word}</SpinBox>
-            <BigLetter fontFace="Roboto" size="6.5rem">CODE</BigLetter>
+      <Fragment>
+        <Container>
+          <Flex height="50%" justifyContent="center" alignItems="center" >
+            <BigLetter className="name-animate">D</BigLetter>
+            <Canvas className="name-animate" expanded={expanded} id="avid" height="150"></Canvas>
+            <BigLetter className="name-animate">J</BigLetter>
+            <Canvas className="name-animate" expanded={expanded} id="ungst" height="150"></Canvas>
+            { start && 
+              <Fragment>
+                <Name fontText="avid" />
+                <Name fontText="ungst" />
+              </Fragment>
+            }
           </Flex>
-        </CodeSection>
-      </Container>
+          <CodeSection>
+            <Flex justifyContent="center">
+              { expandWords ? this.expand() : <SpinBox>{word}</SpinBox> }
+              <BigLetter fontFace="Roboto" size="6.5rem">CODE</BigLetter>
+            </Flex>
+          </CodeSection>
+            <Flex 
+              alignItems="center"
+              justifyContent="flex-end"
+            >
+              <Icons>
+                { urls.map( link => { 
+                  return <SocialIcon style={{ margin: '5px' }} url={link} />
+                  })
+                }
+              </Icons>
+            </Flex>
+        </Container>
+        <Footer>
+          { links.map( link => <ButtonLink to={link.url}>{link.text}</ButtonLink> ) }
+        </Footer>
+      </Fragment>
     );
   }
 }
