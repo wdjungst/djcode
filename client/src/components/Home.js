@@ -4,6 +4,16 @@ import { SocialIcon }  from 'react-social-icons'
 import { Flex } from './styles'
 import { Link } from 'react-router-dom';
 
+const mediaQuery = (block) => (
+  `@media only screen
+     and (min-device-width: 375px)
+     and (max-device-width: 667px)
+     and (-webkit-min-device-pixel-ratio: 2)
+     and (orientation: portrait) {
+       ${block}
+   }`
+)
+
 const colorChange = keyframes`
   from {
     color: #000; 
@@ -47,6 +57,15 @@ const ButtonLink = styled(Link)`
     color: white !important;
     box-shadow: none;
   }
+  
+  ${ mediaQuery(
+      `font-size: 1rem; 
+      padding: 0;
+      width: 100%; 
+      border-width: 1px;
+      box-shadow: none;`
+    ) 
+  }
 `
 
 const Icons = styled.div`
@@ -61,6 +80,15 @@ const BigLetter = styled.span`
 `
 
 const CodeSection = styled.div`
+  * {
+    @media only screen
+      and (min-device-width: 375px)
+      and (max-device-width: 667px)
+      and (-webkit-min-device-pixel-ratio: 2)
+      and (orientation: portrait) {
+        font-size: 4rem;
+    }
+  }
 `
 
 const Container = styled.div`
@@ -82,6 +110,7 @@ const Footer = styled.div`
 const Canvas = styled.canvas`
   width: ${ props => props.expanded ? '250px' : '1px' };
   transition: width 1s linear;
+  ${ mediaQuery('display: none') }
 `
 
 const SpinBox = styled.div`
@@ -90,6 +119,7 @@ const SpinBox = styled.div`
   animation: ${colorChange} 4s linear infinite;
   animation-delay: 3.7s;
   text-align: right;
+  ${ mediaQuery('font-size: 4rem;') }
 `
 
 const List = styled.div`
