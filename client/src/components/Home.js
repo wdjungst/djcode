@@ -36,6 +36,7 @@ const ButtonLink = styled(Link)`
   font-size: 3rem;
   text-align: center;
   box-shadow: 0px 0px 40px 2px #323232;
+  min-width: 295px;
   &:hover {
     color: white !important;
     box-shadow: none;
@@ -48,7 +49,7 @@ const Icons = styled.div`
 `
 
 const BigLetter = styled.span`
-  font-size: ${ props => props.size || '9rem' };
+  font-size: ${ props => props.size || '12rem' };
   font-face: ${ props => props.fontFace ? props.fontFace : '' };
   color: white;
 `
@@ -64,10 +65,12 @@ const Container = styled.div`
 
 const Footer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  height: 30vh;
+  min-height: 30vh;
   background-color: #666666; 
+  background-image: linear-gradient(to bottom right, #7f7f7f, #323232);
 `
 
 const Canvas = styled.canvas`
@@ -203,6 +206,7 @@ class Home extends Component {
       { url: '/', text: '<Learn />' },
       { url: '/', text: '<O.S.S. />' },
       { url: '/', text: '<Speak />' },
+      { url: '/', text: '<Built />' },
     ]
 
     return (
