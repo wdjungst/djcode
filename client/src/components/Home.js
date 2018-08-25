@@ -61,10 +61,11 @@ const ButtonLink = styled(Link)`
   
   ${ mediaQuery(
       `font-size: 1rem; 
-      padding: 0;
-      width: 100%; 
-      border-width: 1px;
-      box-shadow: none;`
+       width: 100%; 
+       border-width: 1px;
+       box-shadow: none;
+       padding: 15px;
+      `
     ) 
   }
 `
@@ -72,6 +73,14 @@ const ButtonLink = styled(Link)`
 const Icons = styled.div`
   position: absolute;
   bottom: 25vh;
+  ${ mediaQuery(
+      `bottom: 0
+       width: 100%;
+       text-align: center;
+       margin: 5px 10px;
+      `
+    ) 
+  }
 `
 
 const BigLetter = styled.span`
@@ -96,6 +105,7 @@ const Container = styled.div`
   padding-top: 50px;
   height: 70vh;
   background-color: #000;
+  ${ mediaQuery('height: 100vh;') }
 `
 
 const Footer = styled.div`
@@ -106,6 +116,7 @@ const Footer = styled.div`
   min-height: 30vh;
   background-color: #666666; 
   background-image: linear-gradient(to bottom right, #7f7f7f, #323232);
+  ${ mediaQuery('display: none;') }
 `
 
 const Canvas = styled.canvas`
