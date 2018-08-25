@@ -287,7 +287,7 @@ class Home extends Component {
             </Flex>
         </Container>
         <Footer>
-          { links.map( link => <ButtonLink key={link} to={link.url}>{link.text}</ButtonLink> ) }
+          { links.map( link => <ButtonLink key={link.text} to={link.url}>{link.text}</ButtonLink> ) }
         </Footer>
       </Fragment>
     );
