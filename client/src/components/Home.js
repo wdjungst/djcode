@@ -280,14 +280,14 @@ class Home extends Component {
             >
               <Icons>
                 { urls.map( link => { 
-                  return <SocialIcon style={{ margin: '5px' }} url={link} />
+                  return <SocialIcon key={link} style={{ margin: '5px', height: 100, width: 100}} url={link} />
                   })
                 }
               </Icons>
             </Flex>
         </Container>
         <Footer>
-          { links.map( link => <ButtonLink to={link.url}>{link.text}</ButtonLink> ) }
+          { links.map( link => <ButtonLink key={link} to={link.url}>{link.text}</ButtonLink> ) }
         </Footer>
       </Fragment>
     );
