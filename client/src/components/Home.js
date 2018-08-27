@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { SocialIcon }  from 'react-social-icons'
 import { Flex } from './styles'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import bg from '../images/bg.jpg'
 
 const mediaQuery = (block) => (
   `@media only screen
@@ -104,7 +105,10 @@ const CodeSection = styled.div`
 const Container = styled.div`
   padding-top: 50px;
   height: 70vh;
-  background-color: #000;
+  background: url(${bg}) no-repeat center center;
+  background-color: rgba(0,0,0,0.9);
+  background-blend-mode: overlay;
+  opacity: 1.8;
   ${ mediaQuery('height: 100vh;') }
 `
 
