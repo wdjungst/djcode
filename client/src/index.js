@@ -17,6 +17,7 @@ injectGlobal`
   @import url(https://fonts.googleapis.com/css?family=Roboto);
   * {
     font-family: Roboto, sans-serif;
+    margin: 0;
   }
 
   .name-animate { 

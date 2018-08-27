@@ -7,7 +7,7 @@ import bg from '../images/bg.jpg'
 
 const mediaQuery = (block) => (
   `@media only screen
-     and (min-device-width: 375px)
+     and (min-device-width: 400px)
      and (max-device-width: 667px)
      and (-webkit-min-device-pixel-ratio: 2)
      and (orientation: portrait) {
@@ -73,7 +73,7 @@ const ButtonLink = styled(Link)`
 
 const Icons = styled.div`
   position: absolute;
-  bottom: 25vh;
+  bottom: 20vh;
   ${ mediaQuery(
       `bottom: 0
        width: 100%;
@@ -103,8 +103,9 @@ const CodeSection = styled.div`
 `
 
 const Container = styled.div`
-  padding-top: 50px;
-  height: 70vh;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
   background: url(${bg}) no-repeat center center;
   background-color: rgba(0,0,0,0.9);
   background-blend-mode: overlay;
@@ -117,7 +118,7 @@ const Footer = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  min-height: 30vh;
+  height: 20vh;
   background-color: #666666; 
   background-image: linear-gradient(to bottom right, #7f7f7f, #323232);
   ${ mediaQuery('display: none;') }
@@ -271,7 +272,7 @@ class Home extends Component {
     return (
       <Fragment>
         <Container>
-          <Flex height="50%" justifyContent="center" alignItems="center" >
+          <Flex height="50%" justifyContent="center" alignItems="center">
             <BigLetter className="name-animate">D</BigLetter>
             <Canvas className="name-animate" expanded={expanded} id="avid" height="150"></Canvas>
             <BigLetter className="name-animate">J</BigLetter>
