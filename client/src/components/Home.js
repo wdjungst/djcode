@@ -97,7 +97,7 @@ const CodeSection = styled.div`
       and (max-device-width: 667px)
       and (-webkit-min-device-pixel-ratio: 2)
       and (orientation: portrait) {
-        font-size: 4rem;
+        font-size: 2rem;
     }
   }
 `
@@ -135,7 +135,7 @@ const SpinBox = styled.div`
   font-size: 6rem;
   color: #ADD8E6;
   text-align: right;
-  ${ mediaQuery('font-size: 4rem;') }
+  ${ mediaQuery('font-size: 2rem;') }
 `
 
 const List = styled.div`
@@ -148,6 +148,7 @@ const Word = styled.div`
   color: #ADD8E6;
   animation: ${animateText} 2s linear;
   animation-fill-mode: forwards;
+  ${ mediaQuery('font-size: 2rem; animation: none;') }
 `
 
 class Name extends Component {
