@@ -133,8 +133,7 @@ const Canvas = styled.canvas`
 const SpinBox = styled.div`
   width: 250px;
   font-size: 6rem;
-  animation: ${colorChange} 4s linear infinite;
-  animation-delay: 3.7s;
+  color: #ADD8E6;
   text-align: right;
   ${ mediaQuery('font-size: 4rem;') }
 `
@@ -195,7 +194,7 @@ class Home extends Component {
     expanded: false,
     start: false,
     word: '',
-    expandWords: false,
+    expandWords: true,
   }
 
   words = [
@@ -209,7 +208,7 @@ class Home extends Component {
   componentDidMount() {
     setTimeout( () => this.setState({ expanded: true }), 1000 )
     setTimeout( () => this.setState({ start: true }), 2000 )
-    this.interval = setInterval( this.changeWord, 4000 )
+    this.interval = setInterval( this.changeWord, 3300 )
   }
 
   componentWillUnmount() {
