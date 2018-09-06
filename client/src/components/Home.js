@@ -7,10 +7,9 @@ import bg from '../images/bg.jpg'
 
 const mediaQuery = (block) => (
   `@media only screen
-     and (min-device-width: 400px)
-     and (max-device-width: 667px)
-     and (-webkit-min-device-pixel-ratio: 2)
-     and (orientation: portrait) {
+     and (min-device-width: 300px)
+     and (max-device-width: 700px)
+     and (-webkit-min-device-pixel-ratio: 2) {
        ${block}
    }`
 )
@@ -53,7 +52,7 @@ const ButtonLink = styled(Link)`
   font-size: 3rem;
   text-align: center;
   box-shadow: 0px 0px 40px 2px #323232;
-  min-width: 295px;
+  min-width: 200px;
   text-decoration: none;
   &:hover {
     color: white !important;
@@ -79,6 +78,7 @@ const Icons = styled.div`
        width: 100%;
        text-align: center;
        margin: 5px 10px;
+       position: initial;
       `
     ) 
   }
@@ -90,13 +90,17 @@ const BigLetter = styled.span`
   color: white;
 `
 
+const Middle = BigLetter.extend`
+  ${ mediaQuery('align-self: center;') }
+`
+
 const CodeSection = styled.div`
+  ${ mediaQuery('flex: 2;') }
   * {
     @media only screen
       and (min-device-width: 375px)
       and (max-device-width: 667px)
       and (-webkit-min-device-pixel-ratio: 2)
-      and (orientation: portrait) {
         font-size: 2rem;
     }
   }
@@ -110,7 +114,7 @@ const Container = styled.div`
   background-color: rgba(0,0,0,0.9);
   background-blend-mode: overlay;
   opacity: 1.8;
-  ${ mediaQuery('height: 100vh;') }
+  ${ mediaQuery('height: 100vh; background-image: none;') }
 `
 
 const Footer = styled.div`
@@ -263,9 +267,10 @@ class Home extends Component {
     ]
 
     const links = [
+      { url: '/', text: '<Dave />' },
       { url: '/', text: '<Learn />' },
-      { url: '/', text: '<OSS />' },
       { url: '/', text: '<Speak />' },
+      { url: '/', text: '<OSS />' },
       { url: '/', text: '<Built />' },
     ]
 
@@ -287,7 +292,7 @@ class Home extends Component {
           <CodeSection>
             <Flex justifyContent="center">
               { expandWords ? this.expand() : <SpinBox>{word}</SpinBox> }
-              <BigLetter fontFace="Roboto" size="6.5rem">CODE</BigLetter>
+              <Middle fontFace="Roboto" size="6.5rem">CODE</Middle>
             </Flex>
           </CodeSection>
             <Flex 

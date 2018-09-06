@@ -12,3 +12,4 @@ export const FlexNum = styled.div`
   flex: ${ props => props.num };
   justify
 `
+
