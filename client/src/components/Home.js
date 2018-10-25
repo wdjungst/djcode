@@ -14,16 +14,6 @@ const mediaQuery = (block) => (
    }`
 )
 
-const colorChange = keyframes`
-  from {
-    color: #000; 
-  }
-
-  to {
-    color: #ADD8E6;
-  }
-`
-
 const animateText = keyframes`
   0% {
     margin-bottom: 0px;
